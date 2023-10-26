@@ -50,3 +50,11 @@ class ProductPage(BasePage):
     def validation_total_price(self, price):
         assert price == self.browser.find_element(*ProductPageLocators.TOTAL_PRICE_BASKET).text, \
             f'Error: should be price {price}'
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.MESSAGE_PRODUCT_ADD), \
+            'Success message is presented, but should not be'
+
+    def should_not_be_disappeared_message(self):
+        assert self.is_disappeared(*ProductPageLocators.MESSAGE_PRODUCT_ADD), \
+            'Success message is presented, but should not be'
