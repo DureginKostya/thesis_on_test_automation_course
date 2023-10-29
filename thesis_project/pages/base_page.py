@@ -4,7 +4,7 @@ from selenium.common.exceptions import TimeoutException
 import math
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from .locators import BasePageLocators
+from .locators import BasePageLocators, MainPageLocators
 
 
 class BasePage():
@@ -13,6 +13,10 @@ class BasePage():
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
+
+    def go_to_basket_with_main_page(self):
+        button = self.browser.find_element(*MainPageLocators.BUTTON_GO_TO_BASKET)
+        button.click()
 
     def go_to_login_page(self):
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
